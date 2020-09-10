@@ -8,26 +8,32 @@ export class RecipeService{
 
     // recipeSelected = new Subject<Recipe>();
     recipesChanged= new Subject<Recipe[]>();
+    private recipes : Recipe[]=[];
     
-    private recipes: Recipe[]=[
-        new Recipe("Blueberry Cheesecake", 
-        "Yummy looking, soft, juicy cheesecake!",
-        "https://domesticgothess.com/wp-content/uploads/2019/07/vegan-lemon-blueberry-cheesecake.jpg",
-        [
-            new Ingredient("Blueberries", 30),
-            new Ingredient('Sugar',2)
-        ]),
-        new Recipe("Mushroom Linguine", 
-        "Easy, healthy, vegetarian and delicious!",
-        "https://domesticgothess.com/wp-content/uploads/2017/06/easy-mushroom-linguine.jpg",
-        [
-            new Ingredient("Chestnut Mushrooms",25),
-            new Ingredient("Lemon",1)
-        ])
+    // private recipes: Recipe[]=[
+    //     new Recipe("Blueberry Cheesecake", 
+    //     "Yummy looking, soft, juicy cheesecake!",
+    //     "https://domesticgothess.com/wp-content/uploads/2019/07/vegan-lemon-blueberry-cheesecake.jpg",
+    //     [
+    //         new Ingredient("Blueberries", 30),
+    //         new Ingredient('Sugar',2)
+    //     ]),
+    //     new Recipe("Mushroom Linguine", 
+    //     "Easy, healthy, vegetarian and delicious!",
+    //     "https://domesticgothess.com/wp-content/uploads/2017/06/easy-mushroom-linguine.jpg",
+    //     [
+    //         new Ingredient("Chestnut Mushrooms",25),
+    //         new Ingredient("Lemon",1)
+    //     ])
     
-      ];
+    //   ];
 
       constructor( private shoppingListService: ShoppingListService) {
+      }
+
+      setRecipes(recipes: Recipe[]){
+          this.recipes= recipes;
+          this.recipesChanged.next(this.recipes.slice());
       }
 
       getRecipes(){
